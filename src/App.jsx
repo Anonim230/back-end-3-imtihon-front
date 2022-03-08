@@ -66,9 +66,6 @@ function App() {
   })
   },[])
   async function filterer(filters = {}){
-    // console.log(filters);
-    // fetch(`${env.HOST}:${env.PORT}/get_houses`)
-    // console.log(filters,Object.values(filters).length);
     if(Object.values(filters).length === 0){
       await setCompanies(globalCompanies)
       await setHouses(globalHouses)
@@ -79,34 +76,38 @@ function App() {
       let local_companies = globalCompanies
       let companies_list =(
         Object.entries(filters.companies)
-      .map(data=>local_companies
-        .filter(gData=>gData[data[0]] === data[1]))[0]
-      )
-      // console.log(companies_list);
-      // console.log((companies_list.map(c => globalHouses.filter(h => h.fillial_id === c.fillial_id)).reduce((prev,curr)=> [...prev,...curr],[])));
-      await setCompanies(companies_list)
-      await setHouses((companies_list.map(c => globalHouses.filter(h => h.fillial_id === c.fillial_id)).reduce((prev,curr)=> [...prev,...curr],[])))
-    // console.log(houses);
-    }
-    if(filters.houses){
-      if(filters.houses.default) return setHouses(globalHouses)
-      // Object.entries(filters.houses)
-      // .map(data=>globalHouses
-      //   .map(gData=>console.log(!isNaN(+gData[data[0]]) ,+gData[data[0]],+data[1])))
-      
-        setHouses(
-        ...Object.entries(filters.houses)
-      .map(data=>globalHouses
-        .filter(gData=>!isNaN(+gData[data[0]]) ? +gData[data[0]] >= +data[1] : gData[data[0]] === data[1]))
-      )
-    }
-}
-  return (
-    <div className="App">
+        .map(data=>local_companies
+          .filter(gData=>gData[data[0]].includes(data[1])))[0]
+          )
+          console.log(companies_list);
+          await setCompanies(companies_list)
+          await setHouses((companies_list.map(c => globalHouses.filter(h => h.fillial_id === c.fillial_id)).reduce((prev,curr)=> [...prev,...curr],[])))
+        }
+        if(filters.houses){
+          if(filters.houses.default) return setHouses(globalHouses)
+          setHouses(
+            ...Object.entries(filters.houses)
+            .map(data=>globalHouses
+              .filter(gData=>!isNaN(+gData[data[0]]) ? +gData[data[0]] >= +data[1] : gData[data[0]] === data[1]))
+              )
+            }
+            // Object.entries(filters.houses)
+            // .map(data=>globalHouses
+            //   .map(gData=>console.log(!isNaN(+gData[data[0]]) ,+gData[data[0]],+data[1])))
+            // console.log(companies_list);
+            // console.log((companies_list.map(c => globalHouses.filter(h => h.fillial_id === c.fillial_id)).reduce((prev,curr)=> [...prev,...curr],[])));
+            // console.log(houses);
+            // console.log(filters);
+            // fetch(`${env.HOST}:${env.PORT}/get_houses`)
+            // console.log(filters,Object.values(filters).length);
+          }
+          return (
+            <div className="App">
       <SearchHouse style={style} houses={houses} companies={companies} filter={filterer} refs={refs} />
       <Table style={style} houses={houses} companies={companies} filter={filterer} refs={refs} />
     </div>
   );
 }
+
 
 export default App;

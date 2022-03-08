@@ -42,13 +42,14 @@ const Table = ({ style, houses, companies, filter, refs})=> {
             </thead>
             <tbody>
               <tr id='calculator'>
-                
                 </tr>
                 {
+                  console.log(houses) ||
                   houses.map((house,id) => (
+                    console.log(house,id) ||
                       <tr key={id} id={house.house_id} onDoubleClick={calc_sum}>
                       <td style={style.td}>
-                            {companies.find(company => company.fillial_id === house.fillial_id).fillial_name}
+                            {(companies.find(company => company.fillial_id  === house.fillial_id) || {fillial_name:'undefined'}).fillial_name}
                       </td>
                       <td style={style.td}>
                             {house.house_rooms}

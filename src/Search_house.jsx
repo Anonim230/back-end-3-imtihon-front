@@ -8,7 +8,7 @@ const SearchHouse = ({style, companies, houses, filter, refs}) => {
         e.preventDefault()
         let command = `${env.HOST}:${env.PORT}/get_credit?`
         if(refs.house_price.current)command += `value=${refs.house_price.current.value}`
-        console.log(e.target.children);
+        // console.log(e.target.children);
         fetch(command)
         .then(data => data.json()).then(value => {
             // thead.current.innerHTML = ''
@@ -28,10 +28,10 @@ const SearchHouse = ({style, companies, houses, filter, refs}) => {
       // calc.current.appendChild(td)
       t.push((value[i]))
     }
-    console.log(t);
+    // console.log(t);
     setCtable(t)
-    console.log(e.currentTarget,value,);
-    console.log(value)
+    // console.log(e.currentTarget,value,);
+    // console.log(value)
         })
     }
     let companies_list = []

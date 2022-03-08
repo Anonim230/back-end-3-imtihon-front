@@ -53,6 +53,7 @@ function App() {
   }
   useEffect(() => {
   // console.log(env,`${env.HOST}:${env.PORT}/get_companies`);
+  console.log(`Fetching${env.HOST}:${env.PORT}/get_companies`);
   fetch(`${env.HOST}:${env.PORT}/get_companies`)
   .then(data=>data.json()).then(value=> {
     setCompanies(value)
@@ -65,7 +66,7 @@ function App() {
   })
   },[])
   async function filterer(filters = {}){
-    console.log(filters);
+    // console.log(filters);
     // fetch(`${env.HOST}:${env.PORT}/get_houses`)
     // console.log(filters,Object.values(filters).length);
     if(Object.values(filters).length === 0){
@@ -81,8 +82,8 @@ function App() {
       .map(data=>local_companies
         .filter(gData=>gData[data[0]] === data[1]))[0]
       )
-      console.log(companies_list);
-      console.log((companies_list.map(c => globalHouses.filter(h => h.fillial_id === c.fillial_id)).reduce((prev,curr)=> [...prev,...curr],[])));
+      // console.log(companies_list);
+      // console.log((companies_list.map(c => globalHouses.filter(h => h.fillial_id === c.fillial_id)).reduce((prev,curr)=> [...prev,...curr],[])));
       await setCompanies(companies_list)
       await setHouses((companies_list.map(c => globalHouses.filter(h => h.fillial_id === c.fillial_id)).reduce((prev,curr)=> [...prev,...curr],[])))
     // console.log(houses);

@@ -54,12 +54,12 @@ function App() {
   useEffect(() => {
   // console.log(env,`${env.HOST}:${env.PORT}/get_companies`);
   console.log(`Fetching${env.HOST}:${env.PORT}/get_companies`);
-  fetch(`${env.HOST}:${env.PORT}/get_companies`)
+  fetch(`${env.HOST}${env.PORT ? ':'+env.PORT:''}/get_companies`)
   .then(data=>data.json()).then(value=> {
     setCompanies(value)
     setGlobalCompanies(value)
   })
-  fetch(`${env.HOST}:${env.PORT}/get_houses`)
+  fetch(`${env.HOST}${env.PORT ? ':'+env.PORT:''}/get_houses`)
   .then(data=>data.json()).then(value=> {
     setHouses(value)
     setGlobalHouses(value)

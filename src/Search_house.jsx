@@ -6,7 +6,7 @@ const SearchHouse = ({style, companies, houses, filter, refs}) => {
     const [ctable,setCtable] = useState([])
     function submit_form(e){
         e.preventDefault()
-        let command = `${env.HOST}:${env.PORT}/get_credit?`
+        let command = `${env.HOST}${env.PORT ? ':'+env.PORT:''}/get_credit?`
         if(refs.house_price.current)command += `value=${refs.house_price.current.value}`
         // console.log(e.target.children);
         fetch(command)

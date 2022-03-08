@@ -108,7 +108,7 @@ const SearchHouse = ({style, companies, houses, filter, refs}) => {
                             <td style={style.td}>{t.credit_value} $</td>
                             <td style={style.td}>{t.credit_percent}</td>
                             <td style={style.td}>{~~(t.credit_duration / 12) > 0 ?`${~~(t.credit_duration / 12)}yil` : ''} {(t.credit_duration % 12) > 0 ?`${(t.credit_duration % 12)}oy` : ''}</td>
-                            <td style={style.td}>{t.total}$</td>
+                            <td style={style.td}>{~~t.total}$</td>
                         </tr>
                     ))
                     }
